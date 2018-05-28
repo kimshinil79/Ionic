@@ -1,0 +1,55 @@
+<ion-menu [content]="praycontent">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>기도메뉴</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <button ion-item (click)="onLoad('subpraylist','mypray')">개인기도</button>
+        <button ion-item (click)="onLoad('subpraylist','familypray')">가족기도</button>
+        <button ion-item (click)="onLoad('subpraylist','freindpray')">친구기도</button>
+        <button ion-item (click)="onLoad('subpraylist','churchpray')">교회기도</button>
+        <button ion-item (click)="onLoad('subpraylist','jobpray')">직장기도</button>
+        <button ion-item (click)="onLoad('subpraylist','worldpray')">세계기도</button>
+        <button ion-item (click)="onLoad('subpraylist','etcpray')">기타</button>
+        <button ion-item (click)="onLoad('praysearch','')">검색</button>
+        <button ion-item (click)="onLoad('praystatistics','')">통계</button>
+        <button ion-item (click)="onLoad('','')">첫화면</button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      </ion-buttons>
+    <ion-title>pray</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding #praycontent>
+  <button ion-button block (click) = "addPray()">기도추가</button>
+  <div [ngSwitch]="currentpage">
+    <div *ngSwitchDefault>
+      <initialpraylist></initialpraylist>
+    </div>
+    <div *ngSwitchCase = "'subpraylist'">
+      {{subpray}}
+    </div>
+    <div *ngSwitchCase = "'praystatistics'">
+      <praystatistics></praystatistics>
+    </div>
+    <div *ngSwitchCase = "'praysearch'">
+      <praysearch></praysearch>
+    </div>
+  </div>
+  
+
+</ion-content>

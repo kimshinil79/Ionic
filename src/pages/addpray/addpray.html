@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-title>addpray</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+기도 추가 합시다.
+<form [formGroup]="form" (ngSubmit)="manage(form.value)">
+  <ion-list>
+    <ion-item>
+      <ion-label>날짜:</ion-label>
+      <ion-input type="text" formControlName="date"></ion-input>
+    </ion-item>
+    <div formArryName="prayContext">
+      <section [formGroupName]="i"
+      *ngFor = "let pray of form.controls.prayContext.controls; let i = index">
+      <ion-item-group>
+        <ion-item-divider color="light">#{{i+1}}번째 기도</ion-item-divider>
+        <ion-item>
+          <ion-label floating>기도내용:</ion-label>
+          <ion-input type="text" formControlName="eachPray"></ion-input>
+        </ion-item>
+        <span float-right ion-button icon-left clear 
+        *ngIf="form.controls.prayContext.length > 1"
+        (click)="removeInputField(i)">
+        <ion-icon name="close"></ion-icon>
+        제거
+        </span>
+      </ion-item-group>
+      </section>
+    </div>
+    <span ion-button float-left icon-left clear (click)="addNewInputField()">
+      <ion-icon name="add"></ion-icon>
+      추가
+    </span>
+  </ion-list>
+  <button ion-button block margin-top color="primary" text-center
+  [disabled]="!form.valid">Submit</button>
+  <button ion-button (click) = "cancel()">취소</button>
+</form>
+
+</ion-content>
